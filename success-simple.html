@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request Submitted - StudySprint</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .success-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            padding: 2rem 1rem;
+        }
+        .success-content {
+            max-width: 500px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            font-size: 2.5rem;
+            animation: bounce 1s ease;
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+        .success-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+        @media (max-width: 768px) {
+            .action-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            .action-buttons a {
+                width: 100%;
+                max-width: 250px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="success-container">
+        <div class="success-content">
+            <div class="success-icon">
+                <i class="fas fa-check"></i>
+            </div>
+            
+            <h1 style="font-size: 2.2rem; margin-bottom: 1rem;">🎉 Request Submitted!</h1>
+            <p style="font-size: 1.1rem; opacity: 0.9; margin-bottom: 2rem;">
+                We'll email you within 2 hours with a quote.
+            </p>
+
+            <div class="success-card">
+                <div style="margin-bottom: 1rem;">
+                    <div style="font-size: 1.3rem; margin-bottom: 0.5rem;"><strong>Estimated Price: ₹<span id="estimatedPrice">---</span></strong></div>
+                    <div style="font-size: 0.9rem; opacity: 0.8;">Request ID: #<span id="requestId">---</span></div>
+                </div>
+                <div style="background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 10px; font-size: 0.9rem;">
+                    <p><i class="fas fa-envelope"></i> Check your email (including spam folder)</p>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <a href="index.html" class="btn-secondary" style="background: rgba(255,255,255,0.2); border-color: white;">
+                    <i class="fas fa-home"></i> Home
+                </a>
+                <a href="request.html" class="btn-primary" style="background: rgba(255,255,255,0.2);">
+                    <i class="fas fa-plus"></i> New Request
+                </a>
+            </div>
+
+            <div style="margin-top: 2rem; opacity: 0.8; font-size: 0.9rem;">
+                <p>StudySprint - Sprint Through Your Assignments! 🚀</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Get URL parameters
+        function getUrlParameter(name) {
+            name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+            const regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+            const results = regex.exec(location.search);
+            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+        }
+
+        // Display request details
+        document.addEventListener('DOMContentLoaded', function() {
+            const requestId = getUrlParameter('id') || Date.now();
+            const estimatedPrice = getUrlParameter('price') || '0';
+            
+            document.getElementById('requestId').textContent = requestId;
+            document.getElementById('estimatedPrice').textContent = estimatedPrice;
+        });
+    </script>
+</body>
+</html>

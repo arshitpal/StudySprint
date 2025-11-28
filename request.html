@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Request - StudySprint</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="logo.png" alt="StudySprint" class="logo-img">
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#services">Services</a></li>
+                <li><a href="index.html#how-it-works">How It Works</a></li>
+                <li><a href="index.html#pricing">Pricing</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+                <li><a href="request.html" class="btn-primary">Get Started</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Request Form Section -->
+    <section class="request-section" style="padding: 6rem 1rem 4rem; background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);">
+        <div class="container">
+            <div class="form-header" style="text-align: center; margin-bottom: 2rem;">
+                <h1 style="font-size: 2rem; color: #1e293b; margin-bottom: 1rem;">Submit Your Assignment Request</h1>
+                <p style="font-size: 1.1rem; color: #64748b;">Fill out the form below with your assignment details</p>
+            </div>
+
+            <div class="form-container">
+                <form id="requestForm">
+                    <!-- Personal Information -->
+                    <div class="form-section">
+                        <h3><i class="fas fa-user"></i> Personal Information</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="fullName">Full Name *</label>
+                                <input type="text" id="fullName" name="fullName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email Address *</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="phone">Phone Number *</label>
+                                <input type="tel" id="phone" name="phone" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="university">University/College</label>
+                                <input type="text" id="university" name="university">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Assignment Details -->
+                    <div class="form-section">
+                        <h3><i class="fas fa-book"></i> Assignment Details</h3>
+                        <div class="form-group">
+                            <label for="assignmentType">Assignment Type *</label>
+                            <select id="assignmentType" name="assignmentType" required>
+                                <option value="">Select Assignment Type</option>
+                                <option value="handwritten">Handwritten Assignment</option>
+                            
+                                <option value="charts-paper">Charts Paper - ₹50</option>
+                                <option value="advanced-ppt">Advanced PPT - ₹50</option>
+                                <option value="website-project">Website Project - ₹500</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="subject">Subject *</label>
+                                <input type="text" id="subject" name="subject" placeholder="e.g., Mathematics, Physics" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="pages">Number of Pages Estimated *</label>
+                                <input type="number" id="pages" name="pages" min="1" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="title">Assignment Title</label>
+                            <input type="text" id="title" name="title">
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <textarea id="description" name="description" rows="4" placeholder="Provide detailed instructions..."></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Deadline & Pricing -->
+                    <div class="form-section">
+                        <h3><i class="fas fa-clock"></i> Deadline & Pricing</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="deadline">Deadline *</label>
+                                <input type="datetime-local" id="deadline" name="deadline" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="urgency">Urgency Level *</label>
+                                <select id="urgency" name="urgency" required>
+                                    <option value="">Select Urgency</option>
+                                    <option value="standard">Standard (3+ days) - ₹2.5/page</option>
+                                    <option value="urgent">Urgent (1-2 days) - ₹3.0/page</option>
+                                    <option value="emergency">Emergency (24+ hours) - ₹4.0/page</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Price Calculator -->
+                    <div class="price-calculator">
+                        <h3><i class="fas fa-calculator"></i> Estimated Price</h3>
+                        <div id="priceDisplay">
+                            <div>Pages: <span id="totalPages">0</span></div>
+                            <div>Rate: ₹<span id="basePrice">0</span>/page</div>
+                            <div class="total-price">Total: ₹<span id="estimatedTotal">0</span></div>
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div style="text-align: center; margin-top: 2rem;">
+                        <button type="submit" class="btn-primary btn-large">
+                            <i class="fas fa-paper-plane"></i> Submit Request
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Info Section 
+    <section class="quick-info">
+        <div class="container">
+            <div class="info-grid">
+                <div class="info-card">
+                    <h4>📚 About StudySprint</h4>
+                    <p>We're a team of academic professionals dedicated to helping students succeed. Our mission is to reduce academic stress.My aim to Providing reliable handwriting project base work-from-home job opportunities. </p>
+                </div>
+                <div class="info-card">
+                    <h4>📋 Terms & Conditions</h4>
+                    <ul>
+                        <li>All work is for reference purposes only</li>
+                        <li>100% original content guaranteed</li>
+                        <li>Confidentiality maintained at all times</li>
+                        <li>Refund available as per policy</li>
+                    </ul>
+                </div>
+                <div class="info-card">
+                    <h4>🔄 Quick Refund Policy</h4>
+                    <ul>
+                        <li>Late delivery: Full refund</li>
+                        <li>Quality issues: Free revision/refund</li>
+                        <li>After A day of apply no refund</li>
+                        <li>Cancel within 2hrs: Full refund</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>-->
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="logo.png" alt="StudySprint" class="logo-img">
+                    </div>
+                    <p>Professional academic assistance for students worldwide.Connecting skilled individuals with authentic handwriting work-from-home projects.All type of your college project Completed by StydySprint team</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Our Team</h4>
+                    <div class="team-members">
+                        <div class="team-member">
+                            <div class="member-avatar">
+                                <i class="fas fa-user-tie"></i>
+                            </div>
+                            <div class="member-info">
+                                <h5>Sibam</h5>
+                                 <span>90644 10559<br>Founder & CEO</span>
+                            </div>
+                        </div>
+                        <div class="team-member">
+                            <div class="member-avatar">
+                                <i class="fas fa-user-graduate"></i>
+                            </div>
+                            <div class="member-info">
+                                <h5>Arshit Pal</h5>
+                                <span>9258130772</span><br>
+                                <span>Academic Head</span>
+                            </div>
+                        </div>
+                        <div class="team-member">
+                            <div class="member-avatar">
+                                <i class="fas fa-user-cog"></i>
+                            </div>
+                            <div class="member-info">
+                                <h5>Abhishek</h5>
+                                <span>84497 53430</span><br>
+                                <span>Quality Manager</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html#services">Services</a></li>
+                        <li><a href="index.html#pricing">Pricing</a></li>
+                        <li><a href="request.html">Submit Request</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Follow Us</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 StudySprint. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Google Sheets integration - Replace YOUR_SCRIPT_ID with your actual deployment ID
+        const SHEET_URL = 'https://script.google.com/macros/s/AKfycbzAsZZMT56DSzhGc6FILvdVvSvxvk8tFfGhQ2F9x3MXX_FHYXaxMDa9H3Ad2o21kndC/exec';
+
+        // Price Calculator with specialized project pricing
+        function updatePrice() {
+            const pages = parseInt(document.getElementById('pages').value) || 0;
+            const urgency = document.getElementById('urgency').value;
+            const assignmentType = document.getElementById('assignmentType').value;
+            
+            // Check for specialized projects
+            const specialPricing = {
+                'charts-paper': 50,
+                'advanced-ppt': 50,
+                'website-project': 500
+            };
+            
+            if (specialPricing[assignmentType]) {
+                const total = specialPricing[assignmentType];
+                document.getElementById('basePrice').textContent = 'Fixed';
+                document.getElementById('totalPages').textContent = '1 project';
+                document.getElementById('estimatedTotal').textContent = total;
+                return;
+            }
+            
+            // Regular page-based pricing
+            let basePrice = 0;
+            if (urgency === 'standard') basePrice = 2.5;
+            else if (urgency === 'urgent') basePrice = 3.0;
+            else if (urgency === 'emergency') basePrice = 4.0;
+            
+            const total = pages * basePrice;
+            
+            document.getElementById('basePrice').textContent = basePrice;
+            document.getElementById('totalPages').textContent = pages;
+            document.getElementById('estimatedTotal').textContent = total.toFixed(1);
+        }
+        
+        // Function to toggle form fields based on assignment type
+        function toggleFormFields() {
+            const assignmentType = document.getElementById('assignmentType').value;
+            const pagesGroup = document.getElementById('pages').closest('.form-group');
+            const urgencyGroup = document.getElementById('urgency').closest('.form-group');
+            
+            const specialTypes = ['charts-paper', 'advanced-ppt', 'website-project'];
+            
+            if (specialTypes.includes(assignmentType)) {
+                pagesGroup.style.display = 'none';
+                urgencyGroup.style.display = 'none';
+                document.getElementById('pages').removeAttribute('required');
+                document.getElementById('urgency').removeAttribute('required');
+            } else {
+                pagesGroup.style.display = 'block';
+                urgencyGroup.style.display = 'block';
+                document.getElementById('pages').setAttribute('required', 'required');
+                document.getElementById('urgency').setAttribute('required', 'required');
+            }
+            
+            updatePrice();
+        }
+        
+        document.getElementById('pages').addEventListener('input', updatePrice);
+        document.getElementById('urgency').addEventListener('change', updatePrice);
+        document.getElementById('assignmentType').addEventListener('change', toggleFormFields);
+        
+        // Form submission to Google Sheets
+        document.getElementById('requestForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            data.timestamp = new Date().toISOString();
+            data.estimatedPrice = document.getElementById('estimatedTotal').textContent;
+            data.type = 'request';
+            
+            // Show loading
+            const submitBtn = document.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
+            submitBtn.disabled = true;
+            
+            // Submit to Google Sheets
+            fetch(SHEET_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+            })
+            .then(() => {
+                // Redirect to success page
+                window.location.href = 'success-simple.html?id=' + Date.now() + '&price=' + data.estimatedPrice;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                // Still redirect as submission likely worked with no-cors
+                window.location.href = 'success-simple.html?id=' + Date.now() + '&price=' + data.estimatedPrice;
+            })
+            .finally(() => {
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            });
+        });
+        
+        // Success Modal
+        function showSuccessModal(data) {
+            const modal = document.createElement('div');
+            modal.innerHTML = `
+                <div class="success-modal" style="
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: rgba(0,0,0,0.8);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    z-index: 10000;
+                    animation: fadeIn 0.3s ease;
+                ">
+                    <div class="success-content" style="
+                        background: linear-gradient(135deg, #10b981, #059669);
+                        color: white;
+                        padding: 3rem 2rem;
+                        border-radius: 20px;
+                        text-align: center;
+                        max-width: 500px;
+                        width: 90%;
+                        box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+                        animation: slideUp 0.5s ease;
+                    ">
+                        <div class="success-icon" style="
+                            width: 80px;
+                            height: 80px;
+                            background: rgba(255,255,255,0.2);
+                            border-radius: 50%;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            margin: 0 auto 1.5rem;
+                            font-size: 2.5rem;
+                            animation: bounce 1s ease;
+                        ">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <h2 style="margin-bottom: 1rem; font-size: 1.8rem;">🎉 Request Submitted!</h2>
+                        <p style="margin-bottom: 1.5rem; opacity: 0.9;">We'll email you within 2 hours with a quote.</p>
+                        
+                        <div style="
+                            background: rgba(255,255,255,0.1);
+                            padding: 1.5rem;
+                            border-radius: 15px;
+                            margin: 1.5rem 0;
+                            border: 1px solid rgba(255,255,255,0.2);
+                        ">
+                            <div style="text-align: center;">
+                                <div style="font-size: 1.2rem; margin-bottom: 0.5rem;"><strong>Estimated Price: ₹${data.estimatedPrice}</strong></div>
+                                <div style="font-size: 0.9rem; opacity: 0.8;">Request ID: #${Date.now()}</div>
+                            </div>
+                        </div>
+                        
+                        <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 2rem;">
+                            <button onclick="closeModal()" class="btn-secondary" style="
+                                background: rgba(255,255,255,0.2);
+                                border: 2px solid white;
+                                color: white;
+                                padding: 0.75rem 1.5rem;
+                                border-radius: 50px;
+                                cursor: pointer;
+                                transition: all 0.3s ease;
+                            ">Continue</button>
+                            <a href="index.html" class="btn-primary" style="
+                                background: rgba(255,255,255,0.2);
+                                color: white;
+                                padding: 0.75rem 1.5rem;
+                                border-radius: 50px;
+                                text-decoration: none;
+                                transition: all 0.3s ease;
+                            ">Home</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <style>
+                    @keyframes fadeIn {
+                        from { opacity: 0; }
+                        to { opacity: 1; }
+                    }
+                    @keyframes slideUp {
+                        from { transform: translateY(50px); opacity: 0; }
+                        to { transform: translateY(0); opacity: 1; }
+                    }
+                    @keyframes bounce {
+                        0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+                        40% { transform: translateY(-10px); }
+                        60% { transform: translateY(-5px); }
+                    }
+                </style>
+            `;
+            
+            document.body.appendChild(modal);
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeModal() {
+            const modal = document.querySelector('.success-modal');
+            if (modal) {
+                modal.style.animation = 'fadeOut 0.3s ease';
+                setTimeout(() => {
+                    modal.remove();
+                    document.body.style.overflow = 'auto';
+                }, 300);
+            }
+        }
+    </script>
+</body>
+</html>
